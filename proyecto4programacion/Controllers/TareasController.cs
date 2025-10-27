@@ -19,13 +19,13 @@ namespace proyecto4programacion.Controllers
             _context = context;
         }
 
-        // GET: Tareas
+        // GET: Inicio Tareas
         public async Task<IActionResult> Index()
         {
             return View(await _context.Tarea.ToListAsync());
         }
 
-        // GET: Tareas/Details/5
+        // GET: Detalles de un registro 
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,19 +43,20 @@ namespace proyecto4programacion.Controllers
             return View(tarea);
         }
 
-        // GET: Tareas/Create
+        // GET: Sección para cargar nueva tarea
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Tareas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Tarea recibida para guardar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Descripcion,FechaCreacion,Estado")] Tarea tarea)
+        public async Task<IActionResult> Create([Bind("Id,Titulo,Descripcion")] Tarea tarea)
         {
+            tarea.FechaCreacion = DateTime.Now;
+            tarea.Estado = "Pendiente";
+
             if (ModelState.IsValid)
             {
                 _context.Add(tarea);
@@ -65,7 +66,7 @@ namespace proyecto4programacion.Controllers
             return View(tarea);
         }
 
-        // GET: Tareas/Edit/5
+        // GET: Sección para editar un registro
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +82,7 @@ namespace proyecto4programacion.Controllers
             return View(tarea);
         }
 
-        // POST: Tareas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Tarea recibida con modificación para guardar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descripcion,FechaCreacion,Estado")] Tarea tarea)
@@ -116,7 +115,7 @@ namespace proyecto4programacion.Controllers
             return View(tarea);
         }
 
-        // GET: Tareas/Delete/5
+        // GET: Confirmacón de tarea a eliminar
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +133,7 @@ namespace proyecto4programacion.Controllers
             return View(tarea);
         }
 
-        // POST: Tareas/Delete/5
+        // POST: Eliminar tarea de base de datos
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
