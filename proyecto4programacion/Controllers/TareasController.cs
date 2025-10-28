@@ -22,7 +22,7 @@ namespace proyecto4programacion.Controllers
         // GET: Inicio Tareas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tarea.ToListAsync());
+            return View(await _context.Tarea.Include(p => p.Estado).ToListAsync());
         }
 
         // GET: Detalles de un registro 
@@ -55,7 +55,7 @@ namespace proyecto4programacion.Controllers
         public async Task<IActionResult> Create([Bind("Id,Titulo,Descripcion")] Tarea tarea)
         {
             tarea.FechaCreacion = DateTime.Now;
-            tarea.Estado = "Pendiente";
+            tarea.Estado = _context.Estados.First(e => e.Id == 1);
 
             if (ModelState.IsValid)
             {
