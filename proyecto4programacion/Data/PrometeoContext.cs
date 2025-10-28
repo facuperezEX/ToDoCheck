@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using proyecto4programacion.Models;
+using proyecto4programacion.Entities;
 
 namespace proyecto4programacion.Data
 {
