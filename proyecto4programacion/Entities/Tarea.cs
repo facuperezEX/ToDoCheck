@@ -8,7 +8,7 @@ namespace proyecto4programacion.Entities
         public int Id { get; set; }
         [Required(ErrorMessage = "Titulo requerido")]
         [StringLength(20, MinimumLength = 3, ErrorMessage = "Minimo 3 caracteres")]
-        [Display(Name = "Título")]
+        [Display(Name = "Tarea")]
         public string Titulo { get; set; }
         [Required(ErrorMessage = "Descripcion de tarea requerida")]
         [StringLength(40, MinimumLength = 8, ErrorMessage = "Minimo 8 caracteres")]

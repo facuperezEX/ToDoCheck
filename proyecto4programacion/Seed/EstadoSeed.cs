@@ -10,7 +10,7 @@ namespace proyecto4programacion.Seed
         {
             builder.HasData(
                 new Estado() { Id = 1, Descripcion = "Pendiente" },
-                new Estado() { Id = 2, Descripcion = "Cumplido" }
+                new Estado() { Id = 2, Descripcion = "Completada" }
             );
         }
     }

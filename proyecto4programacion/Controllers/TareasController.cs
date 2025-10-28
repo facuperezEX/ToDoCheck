@@ -34,6 +34,7 @@ namespace proyecto4programacion.Controllers
             }
 
             var tarea = await _context.Tarea
+                .Include(t => t.Estado)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tarea == null)
             {
@@ -55,7 +56,7 @@ namespace proyecto4programacion.Controllers
         public async Task<IActionResult> Create([Bind("Id,Titulo,Descripcion")] Tarea tarea)
         {
             tarea.FechaCreacion = DateTime.Now;
-            tarea.Estado = _context.Estados.First(e => e.Id == 1);
+            tarea.Estado = _context.Estados.First(e => e.Descripcion == "Pendiente");
 
             if (ModelState.IsValid)
             {
@@ -142,6 +143,22 @@ namespace proyecto4programacion.Controllers
             if (tarea != null)
             {
                 _context.Tarea.Remove(tarea);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpPost, ActionName("DoneTask")]
+        public async Task<IActionResult> RealizarTarea(int id)
+        {
+            var tarea = await _context.Tarea.FindAsync(id);
+
+            if (tarea != null)
+            {
+                tarea.FechaCompletado = DateTime.Now;
+                tarea.Estado = _context.Estados.First(e => e.Descripcion == "Completada");
             }
 
             await _context.SaveChangesAsync();

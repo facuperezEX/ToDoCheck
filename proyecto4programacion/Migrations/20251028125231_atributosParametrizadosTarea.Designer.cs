@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using proyecto4programacion.Data;
 
@@ -11,9 +12,11 @@ using proyecto4programacion.Data;
 namespace proyecto4programacion.Migrations
 {
     [DbContext(typeof(PrometeoContext))]
-    partial class PrometeoContextModelSnapshot : ModelSnapshot
+    [Migration("20251028125231_atributosParametrizadosTarea")]
+    partial class atributosParametrizadosTarea
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +50,7 @@ namespace proyecto4programacion.Migrations
                         new
                         {
                             Id = 2,
-                            Descripcion = "Completada"
+                            Descripcion = "Cumplido"
                         });
                 });
 
