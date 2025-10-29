@@ -4,11 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create"> <button class="btn btn-primary">Nuevo</button></a>
 </p>
+<h3>Lista de Pendientes</h3>
 <table class="table">
     <thead>
         <tr>
@@ -45,9 +44,10 @@
                 @Html.DisplayFor(modelItem => item.Estado.Descripcion)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <form asp-action="DoneTask" asp-route-id="@item.Id" method="post"> <button>Marcar</button> </form> 
+
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
             </td>
         </tr>         
     }
@@ -55,6 +55,7 @@
     </tbody>
 </table>
 
+<h3>Tareas completadas</h3>
 <table class="table">
     <thead>
         <tr>
@@ -98,9 +99,8 @@
                         @Html.DisplayFor(modelItem => item.Estado.Descripcion)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
                     </td>
                 </tr>
             }

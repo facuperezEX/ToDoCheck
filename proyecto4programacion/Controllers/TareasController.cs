@@ -75,7 +75,7 @@ namespace proyecto4programacion.Controllers
                 return NotFound();
             }
 
-            var tarea = await _context.Tarea.FindAsync(id);
+            var tarea = await _context.Tarea.Include(t => t.Estado).FirstAsync(m => m.Id == id);
             if (tarea == null)
             {
                 return NotFound();
