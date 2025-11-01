@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.VisualStudio.TextTemplating;
+using System.ComponentModel.DataAnnotations;
 
 namespace proyecto4programacion.Entities
 {
@@ -12,10 +13,14 @@ namespace proyecto4programacion.Entities
         [Required(ErrorMessage = "Definir dia del recordatorio")]
         [Display(Name = "Fecha del Recordatorio")]
         public DateTime? fechaRecordatorio { get; set; }
-        
+        [Display()]
+        public TimeOnly? hora { get; set; }
 
 
-
+        public override string ToString()
+        {
+            return titulo;
+        }
         
     }
 }

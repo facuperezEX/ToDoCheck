@@ -62,6 +62,8 @@ namespace proyecto4programacion.Controllers
             {
                 _context.Add(recordatorio);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = $"El recordatorio '{recordatorio.titulo}' se ha creado correctamente.";
+
                 return RedirectToAction(nameof(Index));
             }
             return View(recordatorio);
@@ -101,9 +103,11 @@ namespace proyecto4programacion.Controllers
                 {
                     _context.Update(recordatorio);
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = $"El recordatorio se actualizó con éxito.";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+                    TempData["ErrorMessage"] = "Error al actualizar el recordatorio";
                     if (!RecordatorioExists(recordatorio.Id))
                     {
                         return NotFound();
@@ -145,9 +149,13 @@ namespace proyecto4programacion.Controllers
             if (recordatorio != null)
             {
                 _context.recordatorios.Remove(recordatorio);
+                TempData["SuccessMessage"] = "El recordatorio se eliminó correctamente.";
+            }else
+            {
+                TempData["ErrorMessage"] = "No se encontró el recordatorio para eliminar.";
             }
 
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
