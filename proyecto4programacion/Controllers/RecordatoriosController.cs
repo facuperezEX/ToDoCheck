@@ -44,8 +44,10 @@ namespace proyecto4programacion.Controllers
         }
 
         // GET: Recordatorios/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var recordatorios = await _context.recordatorios.ToListAsync();
+            ViewBag.recordatorios = new SelectList(recordatorios, "Id", "Titulo");
             return View();
         }
 
