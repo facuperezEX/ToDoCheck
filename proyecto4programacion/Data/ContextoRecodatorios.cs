@@ -3,9 +3,9 @@ using proyecto4programacion.Entities;
 
 namespace proyecto4programacion.Data
 {
-    public class PrometeoContext : DbContext
+    public class ContextoRecodatorios : DbContext
     {
-        public PrometeoContext(DbContextOptions<PrometeoContext> options) : base(options) { }
+        public ContextoRecodatorios(DbContextOptions<ContextoRecodatorios> options) : base(options) { }
 
         public DbSet<Recordatorio> recordatorios { get; set; }
     }

@@ -11,7 +11,7 @@ using proyecto4programacion.Data;
 
 namespace proyecto4programacion.Migrations
 {
-    [DbContext(typeof(PrometeoContext))]
+    [DbContext(typeof(ContextoRecodatorios))]
     [Migration("20251028225543_InitalCreate")]
     partial class InitalCreate
     {

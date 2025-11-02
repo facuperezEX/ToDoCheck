@@ -12,9 +12,9 @@ namespace proyecto4programacion.Controllers
 {
     public class RecordatoriosController : Controller
     {
-        private readonly PrometeoContext _context;
+        private readonly ContextoRecodatorios _context;
 
-        public RecordatoriosController(PrometeoContext context)
+        public RecordatoriosController(ContextoRecodatorios context)
         {
             _context = context;
         }
@@ -56,7 +56,7 @@ namespace proyecto4programacion.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,titulo,fechaRecordatorio,hora")] Recordatorio recordatorio)
+        public async Task<IActionResult> Create([Bind("Id,titulo,fechaRecordatorio")] Recordatorio recordatorio)
         {
             if (ModelState.IsValid)
             {
@@ -149,10 +149,10 @@ namespace proyecto4programacion.Controllers
             if (recordatorio != null)
             {
                 _context.recordatorios.Remove(recordatorio);
-                TempData["SuccessMessage"] = "El recordatorio se eliminó correctamente.";
+                TempData["SuccessMessage"] = "El recordatorio se elimino correctamente.";
             }else
             {
-                TempData["ErrorMessage"] = "No se encontró el recordatorio para eliminar.";
+                TempData["ErrorMessage"] = "No se encontro el recordatorio para eliminar.";
             }
 
                 await _context.SaveChangesAsync();
