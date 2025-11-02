@@ -62,7 +62,7 @@ namespace proyecto4programacion.Controllers
             {
                 _context.Add(recordatorio);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = $"El recordatorio '{recordatorio.titulo}' se ha creado correctamente.";
+                TempData["SuccessMessage"] = $"El recordatorio {recordatorio.titulo} se ha creado correctamente.";
 
                 return RedirectToAction(nameof(Index));
             }
@@ -103,7 +103,7 @@ namespace proyecto4programacion.Controllers
                 {
                     _context.Update(recordatorio);
                     await _context.SaveChangesAsync();
-                    TempData["SuccessMessage"] = $"El recordatorio se actualizó con éxito.";
+                    TempData["SuccessMessage"] = $"El recordatorio se actualizo con exito.";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
