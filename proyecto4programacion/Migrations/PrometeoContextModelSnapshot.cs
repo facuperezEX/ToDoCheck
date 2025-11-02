@@ -10,7 +10,7 @@ using proyecto4programacion.Data;
 
 namespace proyecto4programacion.Migrations
 {
-    [DbContext(typeof(PrometeoContext))]
+    [DbContext(typeof(ContextoTareas))]
     partial class PrometeoContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

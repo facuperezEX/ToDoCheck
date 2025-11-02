@@ -11,7 +11,7 @@ using proyecto4programacion.Data;
 
 namespace proyecto4programacion.Migrations
 {
-    [DbContext(typeof(PrometeoContext))]
+    [DbContext(typeof(ContextoTareas))]
     [Migration("20251028125231_atributosParametrizadosTarea")]
     partial class atributosParametrizadosTarea
     {
