@@ -10,14 +10,14 @@ using proyecto4programacion.Data;
 
 namespace proyecto4programacion.Migrations
 {
-    [DbContext(typeof(ContextoTareas))]
-    partial class PrometeoContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ContextoApp))]
+    partial class ContextoAppModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.9")
+                .HasAnnotation("ProductVersion", "9.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -49,6 +49,27 @@ namespace proyecto4programacion.Migrations
                             Id = 2,
                             Descripcion = "Completada"
                         });
+                });
+
+            modelBuilder.Entity("proyecto4programacion.Entities.Recordatorio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("fechaRecordatorio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("titulo")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("recordatorios");
                 });
 
             modelBuilder.Entity("proyecto4programacion.Entities.Tarea", b =>

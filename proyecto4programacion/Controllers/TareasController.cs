@@ -12,9 +12,9 @@ namespace proyecto4programacion.Controllers
 {
     public class TareasController : Controller
     {
-        private readonly ContextoTareas _context;
+        private readonly ContextoApp _context;
 
-        public TareasController(ContextoTareas context)
+        public TareasController(ContextoApp context)
         {
             _context = context;
         }

@@ -7,9 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ContextoTareas>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conexion")));
+builder.Services.AddDbContext<ContextoApp>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conexion")));
 
-/*
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -20,7 +19,8 @@ builder.Services.AddAuthentication(options =>
     {
         options.ClientId = builder.Configuration.GetSection("GoogleKeys:ClientId").Value;
         options.ClientSecret = builder.Configuration.GetSection("GoogleKeys:ClientSecret").Value;
-    }); */
+    }); 
+
 
 var app = builder.Build();
 

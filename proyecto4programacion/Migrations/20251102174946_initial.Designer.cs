@@ -11,16 +11,16 @@ using proyecto4programacion.Data;
 
 namespace proyecto4programacion.Migrations
 {
-    [DbContext(typeof(ContextoTareas))]
-    [Migration("20251028025127_addEstadoSeed")]
-    partial class addEstadoSeed
+    [DbContext(typeof(ContextoApp))]
+    [Migration("20251102174946_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.9")
+                .HasAnnotation("ProductVersion", "9.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -50,8 +50,29 @@ namespace proyecto4programacion.Migrations
                         new
                         {
                             Id = 2,
-                            Descripcion = "Cumplido"
+                            Descripcion = "Completada"
                         });
+                });
+
+            modelBuilder.Entity("proyecto4programacion.Entities.Recordatorio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("fechaRecordatorio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("titulo")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("recordatorios");
                 });
 
             modelBuilder.Entity("proyecto4programacion.Entities.Tarea", b =>
@@ -64,10 +85,11 @@ namespace proyecto4programacion.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
-                    b.Property<string>("Estado")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("EstadoId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("FechaCompletado")
                         .HasColumnType("datetime2");
@@ -77,11 +99,23 @@ namespace proyecto4programacion.Migrations
 
                     b.Property<string>("Titulo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EstadoId");
+
                     b.ToTable("Tarea");
+                });
+
+            modelBuilder.Entity("proyecto4programacion.Entities.Tarea", b =>
+                {
+                    b.HasOne("proyecto4programacion.Entities.Estado", "Estado")
+                        .WithMany()
+                        .HasForeignKey("EstadoId");
+
+                    b.Navigation("Estado");
                 });
 #pragma warning restore 612, 618
         }
